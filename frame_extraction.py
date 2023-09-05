@@ -72,10 +72,12 @@ pose_positions = [
 ]
 
 max_num_hands = 2
-min_detection_confidence = 0.7
+min_detection_confidence = 0.4
 
-base_path = "Videos/Videos"
-categories = os.listdir(base_path)
+# base_path = "Videos/Videos"
+base_path = "C:\\Users\\duduu\\Projects\\datasets\\LSA64"
+# categories = os.listdir(base_path)
+categories = [i for i in range(64)]
 videos_data = []
 
 
@@ -163,24 +165,37 @@ def extract_pose(pose):
     return landmarks
 
 
-for category_index in range(len(categories)):
-    category = categories[category_index]
-    videos = os.listdir(os.path.join(base_path, category))
-    for video in videos:
-        print(f"Processing {category} - {video}")
-        landmarks = get_video_landmarks(os.path.join(base_path, category, video))
-        frame_count = 0
-        for l in landmarks:
-            frame_data = {
-                "category": category_index,
-                "video_name": video,
-                "frame": frame_count
-            }
-            frame_data.update(extract_hands(l.hands_landmarks))
-            frame_data.update(extract_face(l.face_landmarks))
-            frame_data.update(extract_pose(l.pose_landmarks))
-            frame_count += 1
-            videos_data.append(frame_data)
+def process_video(video_path, category, category_index, video_name):
+    print(f"Processing {category} - {video_name}")
+    landmarks = get_video_landmarks(video_path)
+    frame_count = 0
+    for l in landmarks:
+        frame_data = {
+            "category": category_index,
+            "video_name": video_name,
+            "frame": frame_count
+        }
+        frame_data.update(extract_hands(l.hands_landmarks))
+        frame_data.update(extract_face(l.face_landmarks))
+        frame_data.update(extract_pose(l.pose_landmarks))
+        frame_count += 1
+        videos_data.append(frame_data)
+
+
+# for category_index in range(len(categories)):
+#     category = categories[category_index]
+#     videos = os.listdir(os.path.join(base_path, category))
+#     for video in videos:
+#         process_video(base_path, category, video)
+
+for video in os.listdir(base_path):
+    category, signaler, index = video.replace(".mp4", "").split("_")
+    category = int(category)
+    if category > 30:
+        break
+    if category <= 20:
+        continue
+    process_video(os.path.join(base_path, video), category, category, video)
 
 df = pd.DataFrame(videos_data)
-df.to_csv("dataset.csv")
+df.to_csv("lsa64_dataset_part_3.csv")
