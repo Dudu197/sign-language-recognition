@@ -1,8 +1,9 @@
-python openpose_extraction.py 57
-python openpose_extraction.py 58
-python openpose_extraction.py 59
-python openpose_extraction.py 60
-python openpose_extraction.py 61
-python openpose_extraction.py 62
-python openpose_extraction.py 63
-python openpose_extraction.py 64
+python openpose_extraction.py howAre
+python openpose_extraction.py love
+python openpose_extraction.py mask
+python openpose_extraction.py no
+python openpose_extraction.py please
+python openpose_extraction.py sorry
+python openpose_extraction.py thanks
+python openpose_extraction.py wear
+python openpose_extraction.py you

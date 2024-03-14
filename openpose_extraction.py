@@ -7,14 +7,14 @@ import os
 import sys
 
 
-category_to_process = int(sys.argv[1])
+# category_to_process = int(sys.argv[1])
+category_to_process = sys.argv[1]
 max_num_hands = 2
-min_detection_confidence = 0.4
 
 # base_path = "Videos/Videos"
-base_path = "D:\\Projects\\datasets\\LSA64"
-# categories = os.listdir(base_path)
-categories = [i for i in range(64)]
+base_path = "D:\\Projects\\datasets\\Libras_Minds"
+categories = os.listdir(base_path)
+# categories = [i for i in range(64)]
 videos_data = []
 
 extractor = OpenPoseExtractor()
@@ -60,7 +60,8 @@ def extract_face(face):
         landmark_count = 0
         if type(face) in [list, np.ndarray]:
             if len(face) > 2:
-                raise "Não era para ser"
+                # raise "Não era para ser"
+                print("Não era para ser")
             face = face[0]
         for l in face:
             landmarks[f"face_{landmark_count}_x"] = l[0]
@@ -116,14 +117,17 @@ def process_video(video_path, category, category_index, video_name):
 #         process_video(base_path, category, video)
 
 videos_to_process = []
-for video in os.listdir(base_path):
-    category, signaler, index = video.replace(".mp4", "").split("_")
-    category = int(category)
-    if category > category_to_process:
-        break
-    if category <= category_to_process - 1:
-        continue
-    videos_to_process.append((video, category, signaler, index))
+for category in os.listdir(base_path):
+    for video in os.listdir(os.path.join(base_path, category)):
+        category_name, index = video.replace(".avi", "").split("_")
+        signaler = (int((int(index) + 1) / 15))
+        # category = int(category)
+        # if category > category_to_process:
+        #     break
+        # if category < category_to_process - 1:
+        if category != category_to_process:
+            continue
+        videos_to_process.append((video, category, signaler, index))
 
 processed = 0
 videos_len = len(videos_to_process)
@@ -131,7 +135,7 @@ total_start_time = time.time()
 for video, category, signaler, index in videos_to_process:
     processed += 1
     start_time = time.time()
-    process_video(os.path.join(base_path, video), category, category, video)
+    process_video(os.path.join(base_path, category, video), category, category, video)
     end_time = time.time()
     duration = end_time - start_time
     eta = duration * (videos_len - processed)
@@ -143,4 +147,4 @@ print(f"Total execution time: {int(total_time/60)}m or {total_time}s")
 
 
 df = pd.DataFrame(videos_data)
-df.to_csv(f"dataset_output/lsa64_openpose/lsa64_dataset_cat_{category_to_process}.csv")
+df.to_csv(f"dataset_output/libras_minds/libras_minds_{category_to_process}.csv")

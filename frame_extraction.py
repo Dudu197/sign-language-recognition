@@ -75,7 +75,7 @@ max_num_hands = 2
 min_detection_confidence = 0.4
 
 # base_path = "Videos/Videos"
-base_path = "C:\\Users\\duduu\\Projects\\datasets\\LSA64"
+base_path = "D:\\Projects\\datasets\\daniele"
 # categories = os.listdir(base_path)
 categories = [i for i in range(64)]
 videos_data = []
@@ -189,13 +189,14 @@ def process_video(video_path, category, category_index, video_name):
 #         process_video(base_path, category, video)
 
 for video in os.listdir(base_path):
-    category, signaler, index = video.replace(".mp4", "").split("_")
-    category = int(category)
-    if category > 30:
-        break
-    if category <= 20:
-        continue
+    category = video.replace(".mp4", "")
+    signaler = 1
+    # if category > 30:
+    #     break
+    # if category <= 20:
+    #     continue
     process_video(os.path.join(base_path, video), category, category, video)
 
-df = pd.DataFrame(videos_data)
-df.to_csv("lsa64_dataset_part_3.csv")
+    df = pd.DataFrame(videos_data)
+    df.to_csv(f"datasets/dot/daniele/{category}.csv")
+    videos_data = []
