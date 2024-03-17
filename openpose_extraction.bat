@@ -1,9 +1,1 @@
-python openpose_extraction.py howAre
-python openpose_extraction.py love
-python openpose_extraction.py mask
-python openpose_extraction.py no
-python openpose_extraction.py please
-python openpose_extraction.py sorry
-python openpose_extraction.py thanks
-python openpose_extraction.py wear
-python openpose_extraction.py you
+python openpose_extraction.py Maca

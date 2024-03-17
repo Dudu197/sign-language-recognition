@@ -5,6 +5,7 @@ from openpose import OpenPoseExtractor
 import pandas as pd
 import os
 import sys
+import re
 
 
 # category_to_process = int(sys.argv[1])
@@ -12,9 +13,9 @@ category_to_process = sys.argv[1]
 max_num_hands = 2
 
 # base_path = "Videos/Videos"
-base_path = "D:\\Projects\\datasets\\Libras_Minds"
-categories = os.listdir(base_path)
-# categories = [i for i in range(64)]
+base_path = "D:\\Projects\\datasets\\libras_minds\\raw"
+# categories = os.listdir(base_path)
+# categories = [str(i + 1).ljust(2, "0") for i in range(20)]
 videos_data = []
 
 extractor = OpenPoseExtractor()
@@ -117,17 +118,21 @@ def process_video(video_path, category, category_index, video_name):
 #         process_video(base_path, category, video)
 
 videos_to_process = []
-for category in os.listdir(base_path):
-    for video in os.listdir(os.path.join(base_path, category)):
-        category_name, index = video.replace(".avi", "").split("_")
-        signaler = (int((int(index) + 1) / 15))
-        # category = int(category)
-        # if category > category_to_process:
-        #     break
-        # if category < category_to_process - 1:
-        if category != category_to_process:
-            continue
-        videos_to_process.append((video, category, signaler, index))
+for video in os.listdir(base_path):
+# for video in os.listdir(os.path.join(base_path, category)):
+#     category_name, index = video.replace(".avi", "").split("_")
+#     category = int(video[:2])
+#     signaler = (int((int(index) + 1) / 15))
+    result = re.findall(r"(\d\d)(.*)Sinalizador(\d\d)", video)[0]
+    category = result[1]
+    signaler = int(result[2])
+    # category = int(category)
+    # if category > category_to_process:
+    #     break
+    # if category < category_to_process - 1:
+    if category != category_to_process:
+        continue
+    videos_to_process.append((video, category, signaler, 0))
 
 processed = 0
 videos_len = len(videos_to_process)
@@ -135,7 +140,7 @@ total_start_time = time.time()
 for video, category, signaler, index in videos_to_process:
     processed += 1
     start_time = time.time()
-    process_video(os.path.join(base_path, category, video), category, category, video)
+    process_video(os.path.join(base_path, video), category, category, video)
     end_time = time.time()
     duration = end_time - start_time
     eta = duration * (videos_len - processed)
@@ -147,4 +152,4 @@ print(f"Total execution time: {int(total_time/60)}m or {total_time}s")
 
 
 df = pd.DataFrame(videos_data)
-df.to_csv(f"dataset_output/libras_minds/libras_minds_{category_to_process}.csv")
+df.to_csv(f"dataset_output/libras_minds/raw/libras_minds_{category_to_process}.csv")

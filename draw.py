@@ -2,9 +2,9 @@ import cv2
 import pandas as pd
 import numpy as np
 
-# df = pd.read_csv("dataset_output/libras_minds/libras_minds_hello.csv")
+df = pd.read_csv("dataset_output/libras_minds/raw/libras_minds_Acontecer.csv")
 # df = pd.read_csv("datasets/libras_minds_dataset_openpose.csv")
-df = pd.read_csv("datasets/dot/daniele/Abias.MOV.csv")
+# df = pd.read_csv("datasets/dot/daniele/Abias.MOV.csv")
 # print(df)
 
 excluded_body_landmarks = [10, 11, 13, 14, 19, 20, 21, 22, 23, 24]
@@ -15,7 +15,7 @@ landmarks_name = np.array([i for i in landmarks_name if not i.startswith(exclude
 landmarks_name = landmarks_name.reshape((int(landmarks_name.shape[0]/3), 3))
 videos = df["video_name"].unique()
 
-video_size = (1280, 720)
+video_size = (720, 1280)
 done_categories = []
 
 
