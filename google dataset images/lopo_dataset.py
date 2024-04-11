@@ -10,15 +10,18 @@ import math
 
 
 class LopoDataset(Dataset):
-    def __init__(self, dataframe, frames, transforms=None, augment=True, person_in=[], person_out=[]):
-        # self.df = dataframe
-        # self.data = dataframe.values.astype(float)
-        # self.scaler = StandardScaler()
+    def __init__(self, dataframe, frames, transforms=None, augment=True, transform_distance=False, person_in=[], person_out=[], seed=None):
         self.transforms = transforms
+        self.seed = seed
+        if self.seed:
+            self.reset_random()
 
-        # self.data = self.scaler.fit_transform(self.data)
+        if transform_distance:
+            dataframe = self.transform_distance_landmarks(dataframe)
+
         self.frames = frames
         self.augment = augment
+        self.transform_distance = transform_distance
         self.person_in = person_in
         self.person_out = person_out
         self.signs = self.get_signs(dataframe)
@@ -52,6 +55,9 @@ class LopoDataset(Dataset):
         if augment:
             x, y = self.perform_augmentation(x, y)
         return x, y, category
+
+    def reset_random(self):
+        np.random.seed(self.seed)
 
     def get_signs(self, df):
         signs = list(df.columns)
@@ -158,25 +164,73 @@ class LopoDataset(Dataset):
 
         return translated_landmarks
 
-    def apply_transformation(self, x, y, rotation, zoom, translate_x, translate_y):
+    def apply_transformation(self, x, y, rotation, zoom, translate_x, translate_y, mirror_chance):
         x, y = self.rotate_landmarks(x, y, math.radians(rotation))
+
         x = self.zoom_landmarks(x, zoom)
         x = self.translate_landmarks(x, [translate_x])
+        x = self.mirror_flip_landmarks_horizontally(x, mirror_chance)
 
-        # y = self.rotate_landmarks_y(y, math.radians(rotation))
         y = self.zoom_landmarks(y, zoom)
         y = self.translate_landmarks(y, [translate_y])
+
         return x, y
 
     def perform_augmentation(self, x, y):
-        rotation_sigma = 4
-        zoom_sigma = 0.05
-        translate_x_sigma = 0.01
+        rotation_sigma = 12
+        zoom_sigma = 0.1
+        translate_x_sigma = 0.06
         translate_y_sigma = 0.0
+        mirror_sigma = 0.5
         rotation = np.random.normal(0, rotation_sigma)
         zoom = np.random.normal(0, zoom_sigma) + 1
         translate_x = np.random.normal(0, translate_x_sigma)
         translate_y = np.random.normal(0, translate_y_sigma)
-        x, y = self.apply_transformation(x, y, rotation, zoom, translate_x, translate_y)
+        mirror_chance = np.random.normal(0, mirror_sigma)
+        x, y = self.apply_transformation(x, y, rotation, zoom, translate_x, translate_y, mirror_chance)
         return x, y
 
+    def mirror_flip_landmarks_horizontally(self, df, mirror_chance):
+        # Mirror flip the x-coordinates horizontally
+        if mirror_chance > 0:
+            return -np.flip(df, axis=1)
+        else:
+            return df
+
+    def transform_distance_landmarks(self, df):
+        columns = df.columns
+
+        # hand_columns = [i for i in list(columns) if i.startswith("hand_")]
+        hand_0_columns_x = [i for i in list(columns) if i.startswith("hand_0_") and i.endswith("_x")]
+        hand_0_columns_y = [i for i in list(columns) if i.startswith("hand_0_") and i.endswith("_y")]
+        hand_1_columns_x = [i for i in list(columns) if i.startswith("hand_1_") and i.endswith("_x")]
+        hand_1_columns_y = [i for i in list(columns) if i.startswith("hand_1_") and i.endswith("_y")]
+
+        # pose_columns = [i for i in list(columns) if i.startswith("pose_")]
+        pose_columns_x = [i for i in list(columns) if i.startswith("pose_") and i.endswith("_x")]
+        pose_columns_y = [i for i in list(columns) if i.startswith("pose_") and i.endswith("_y")]
+
+        # face_columns = [i for i in list(columns) if i.startswith("face_")]
+        face_columns_x = [i for i in list(columns) if i.startswith("face_") and i.endswith("_x")]
+        face_columns_y = [i for i in list(columns) if i.startswith("face_") and i.endswith("_y")]
+
+        for i in hand_0_columns_x:
+            df[i] -= df["pose_0_x"]
+        for i in hand_0_columns_y:
+            df[i] -= df["pose_0_y"]
+        for i in hand_1_columns_x:
+            df[i] -= df["pose_0_x"]
+        for i in hand_1_columns_y:
+            df[i] -= df["pose_0_y"]
+
+        for i in pose_columns_x:
+            df[i] -= df["pose_0_x"]
+        for i in pose_columns_y:
+            df[i] -= df["pose_0_y"]
+
+        for i in face_columns_x:
+            df[i] -= df["face_30_x"]
+        for i in face_columns_y:
+            df[i] -= df["face_30_y"]
+
+        return df
