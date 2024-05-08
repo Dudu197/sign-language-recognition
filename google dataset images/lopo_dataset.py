@@ -7,12 +7,14 @@ from torch.utils.data import DataLoader, Dataset
 from sklearn.preprocessing import StandardScaler
 from PIL import Image
 import math
+import time
 
 
 class LopoDataset(Dataset):
-    def __init__(self, dataframe, frames, transforms=None, augment=True, transform_distance=False, person_in=[], person_out=[], seed=None):
+    def __init__(self, dataframe, frames, transforms=None, augment=True, transform_distance=False, person_in=[], person_out=[], seed=None, print_timing=False):
         self.transforms = transforms
         self.seed = seed
+        self.print_timing = print_timing
         if self.seed:
             self.reset_random()
 
@@ -79,6 +81,7 @@ class LopoDataset(Dataset):
 
     def landmarks_to_image(self, x, y, n=3, normalize=False):
         # Remove cols until the width is multiple of n
+        start_time = time.time()
         width = x.shape[1]
         if width % n != 0:
             extra_cols = width % n
@@ -88,6 +91,9 @@ class LopoDataset(Dataset):
         X = np.reshape(x, (x.shape[0], -1, n))
         Y = np.reshape(y, (y.shape[0], -1, n))
         I = np.concatenate([X, Y], axis=1)
+        end_time = time.time()
+        if self.print_timing:
+            print(f"landmarks_to_image duration: {end_time - start_time}")
         return I
 
     def normalize_axis(self, axis):
@@ -104,9 +110,9 @@ class LopoDataset(Dataset):
             df_video = df[df["video_name"] == video].sort_values("frame")
             category = df_video.iloc[0]["category"]
             person = df_video.iloc[0]["person"]
-            if len(video) > self.frames:
-                print("Video > frames")
-                break
+            # if len(video) > self.frames:
+            #     print("Video > frames")
+            #     break
             if len(self.person_in) > 0:
                 if person not in self.person_in:
                     continue
@@ -181,18 +187,18 @@ class LopoDataset(Dataset):
         zoom_sigma = 0.1
         translate_x_sigma = 0.06
         translate_y_sigma = 0.0
-        mirror_sigma = 0.5
+        mirror_chance = 0.3
         rotation = np.random.normal(0, rotation_sigma)
         zoom = np.random.normal(0, zoom_sigma) + 1
         translate_x = np.random.normal(0, translate_x_sigma)
         translate_y = np.random.normal(0, translate_y_sigma)
-        mirror_chance = np.random.normal(0, mirror_sigma)
+        mirror_chance = mirror_chance
         x, y = self.apply_transformation(x, y, rotation, zoom, translate_x, translate_y, mirror_chance)
         return x, y
 
     def mirror_flip_landmarks_horizontally(self, df, mirror_chance):
         # Mirror flip the x-coordinates horizontally
-        if mirror_chance > 0:
+        if np.random.random() > mirror_chance:
             return -np.flip(df, axis=1)
         else:
             return df

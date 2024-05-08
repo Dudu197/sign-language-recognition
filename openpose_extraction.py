@@ -10,10 +10,11 @@ import re
 
 # category_to_process = int(sys.argv[1])
 category_to_process = sys.argv[1]
+# category_to_process = "Acontecer"
 max_num_hands = 2
 
 # base_path = "Videos/Videos"
-base_path = "D:\\Projects\\datasets\\libras_minds\\raw"
+base_path = "D:\\Projects\\datasets\\include50"
 # categories = os.listdir(base_path)
 # categories = [str(i + 1).ljust(2, "0") for i in range(20)]
 videos_data = []
@@ -62,7 +63,7 @@ def extract_face(face):
         if type(face) in [list, np.ndarray]:
             if len(face) > 2:
                 # raise "Não era para ser"
-                print("Não era para ser")
+                print("More than one face detected. Using first face")
             face = face[0]
         for l in face:
             landmarks[f"face_{landmark_count}_x"] = l[0]
@@ -109,30 +110,42 @@ def process_video(video_path, category, category_index, video_name):
         frame_data.update(extract_pose(l.pose_landmarks))
         frame_count += 1
         videos_data.append(frame_data)
+    return frame_count
 
-
+videos_to_process = []
 # for category_index in range(len(categories)):
 #     category = categories[category_index]
 #     videos = os.listdir(os.path.join(base_path, category))
 #     for video in videos:
 #         process_video(base_path, category, video)
 
-videos_to_process = []
-for video in os.listdir(base_path):
+
+for base_category in os.listdir(base_path):
+    if base_category != category_to_process or "." in base_category:
+        continue
+    for category in os.listdir(os.path.join(base_path, base_category)):
+        for video in os.listdir(os.path.join(base_path, base_category, category)):
+            video_path = os.path.join(base_category, category, video)
+            signaler = 0
+            videos_to_process.append((video_path, category, f"{base_category}_{signaler}", signaler))
+
+
+
+# for video in os.listdir(base_path):
 # for video in os.listdir(os.path.join(base_path, category)):
 #     category_name, index = video.replace(".avi", "").split("_")
 #     category = int(video[:2])
 #     signaler = (int((int(index) + 1) / 15))
-    result = re.findall(r"(\d\d)(.*)Sinalizador(\d\d)", video)[0]
-    category = result[1]
-    signaler = int(result[2])
+#     result = re.findall(r"(\d\d)(.*)Sinalizador(\d\d)", video)[0]
+#     category = result[1]
+#     signaler = int(result[2])
     # category = int(category)
     # if category > category_to_process:
     #     break
     # if category < category_to_process - 1:
-    if category != category_to_process:
-        continue
-    videos_to_process.append((video, category, signaler, 0))
+    # if category_to_process not in video:
+    #     continue
+    # videos_to_process.append((video, 0, 0, 0))
 
 processed = 0
 videos_len = len(videos_to_process)
@@ -140,10 +153,11 @@ total_start_time = time.time()
 for video, category, signaler, index in videos_to_process:
     processed += 1
     start_time = time.time()
-    process_video(os.path.join(base_path, video), category, category, video)
+    frame_count = process_video(os.path.join(base_path, video), category, category, video)
     end_time = time.time()
     duration = end_time - start_time
     eta = duration * (videos_len - processed)
+    print(f"Benchmark: duration: {duration}; frames: {frame_count}")
     print(f"Duration: {duration}s. ETA: {int(eta/60)}m")
 
 total_end_time = time.time()
@@ -152,4 +166,4 @@ print(f"Total execution time: {int(total_time/60)}m or {total_time}s")
 
 
 df = pd.DataFrame(videos_data)
-df.to_csv(f"dataset_output/libras_minds/raw/libras_minds_{category_to_process}.csv")
+df.to_csv(f"dataset_output/include50/raw/include50_{category_to_process}.csv")

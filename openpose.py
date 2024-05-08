@@ -23,6 +23,9 @@ class OpenPoseExtractor:
             "model_folder"] = r"C:\Users\duduu\Downloads\openpose-1.7.0-binaries-win64-gpu-python3.7-flir-3d_recommended\openpose\models/"
         params["face"] = True
         params["hand"] = True
+        params["net_resolution"] = "-1x256"
+        params["face_net_resolution"] = "256x256"
+        params["hand_net_resolution"] = "256x256"
 
         self.op_wrapper = op.WrapperPython()
         self.op_wrapper.configure(params)

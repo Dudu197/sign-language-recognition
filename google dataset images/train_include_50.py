@@ -26,10 +26,9 @@ import time
 from matplotlib import pyplot as plt
 from lopo_dataset import LopoDataset
 
-
 # In[11]:
 
-print("="*10)
+print("=" * 10)
 print("Running", sys.argv)
 print(datetime.now())
 
@@ -43,49 +42,24 @@ if not os.path.exists(os.path.join("results", ref, dataset_name)):
     os.mkdir(os.path.join("results", ref, dataset_name))
     os.mkdir(os.path.join("results", ref, dataset_name, "models"))
 
-
 # In[13]:
 
 
 torch.manual_seed(seed)
 
-
 # In[14]:
 
-if dataset_name == "minds":
-    # df = pd.read_csv("../dataset_output/libras_minds/libras_minds_openpose_80_frames.csv")
-    df = pd.read_csv("../dataset_output/libras_minds/libras_minds_openpose.csv")
-    frames = 80
-elif dataset_name == "ufop":
-    df = pd.read_csv("../dataset_output/libras_ufop/libras_ufop_openpose.csv")
-    # df = pd.read_csv("../dataset_output/libras_ufop/libras_ufop_openpose_60_frames.csv")
-    frames = 60
-elif dataset_name == "ksl":
-    df = pd.read_csv("../dataset_output/KSL/ksl_openpose.csv")
-    frames = 1
-else:
-    raise ValueError("Invalid dataset name")
-
+df = pd.read_csv("../dataset_output/include50/include50_openpose.csv")
+frames = 1
 
 # In[15]:
 
 
 df
 
-
 # In[16]:
-
-
-# Minds only
-if dataset_name == "minds":
-    if "person" not in df.columns:
-        import re
-        df["person"] = df["video_name"].apply(lambda i: int(re.findall(r".*Sinalizador(\d+)-.+.mp4", i)[0]))
-
-if dataset_name == "ksl":
-    if "person" not in df.columns:
-        df["person"] = df["video_name"].apply(lambda i: int(i.split("\\")[1].split("_")[0]))
-
+if "person" not in df.columns:
+    df["person"] = 0
 
 # In[17]:
 
@@ -101,7 +75,6 @@ test_people = [int(i) for i in sys.argv[2].split(",")]
 
 epochs = 50
 
-
 # In[18]:
 
 
@@ -109,22 +82,40 @@ epochs = 50
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
-#     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    #     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
 
+def read_file(filename):
+    with open(filename) as file:
+        lines = [line.rstrip().replace("/", "\\") for line in file]
+    return lines
+
 # In[19]:
+train_videos = read_file("../dataset_output/include50/include50_train.txt")
+test_videos = read_file("../dataset_output/include50/include50_test.txt")
+validate_videos = read_file("../dataset_output/include50/include50_val.txt")
+
+train_df = df[df["video_name"].isin(train_videos)].copy()
+test_df = df[df["video_name"].isin(test_videos)].copy()
+validate_df = df[df["video_name"].isin(validate_videos)].copy()
+
+print(f"Train size: {len(train_df)}")
+print(f"Test size: {len(test_df)}")
+print(f"Validate size: {len(validate_df)}")
 
 
 print("Processing train")
-train_dataset = LopoDataset(df, frames, transform, transform_distance=False, augment=True, person_out=validate_people + test_people, seed=seed)
+train_dataset = LopoDataset(train_df, frames, transform, transform_distance=False, augment=True,
+                            person_in=[0], seed=seed)
 print("Processing test")
-test_dataset = LopoDataset(df, frames, transform, transform_distance=False, augment=False, person_in=test_people, seed=seed)
+test_dataset = LopoDataset(test_df, frames, transform, transform_distance=False, augment=False, person_in=[0],
+                           seed=seed)
 if validate_people:
     print("Processing validate")
-    validate_dataset = LopoDataset(df, frames, transform, transform_distance=False, augment=False, person_in=validate_people, seed=seed)
+    validate_dataset = LopoDataset(validate_df, frames, transform, transform_distance=False, augment=False,
+                                   person_in=[0], seed=seed)
 print("Data loaded")
-
 
 # In[1313]:
 
@@ -153,26 +144,22 @@ test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
 if validate_people:
     validate_loader = DataLoader(validate_dataset, batch_size=64, shuffle=False)
 
-
 # In[21]:
 
 
 # Load pre-trained ResNet18 model
 resnet = resnet18(pretrained=True)
 
-
 # In[22]:
 
 
 num_ftrs = resnet.fc.in_features
-
 
 # In[23]:
 
 
 num_features = len(df["category"].unique())
 num_features
-
 
 # In[24]:
 
@@ -193,7 +180,6 @@ resnet.fc = nn.Sequential(
     nn.Linear(128, num_features)
 )
 
-
 # In[46]:
 
 
@@ -206,7 +192,6 @@ optimizer_parameters = {
 }
 optimizer = optim.Adam(resnet.parameters(), **optimizer_parameters)
 
-
 # In[27]:
 
 
@@ -214,12 +199,10 @@ optimizer = optim.Adam(resnet.parameters(), **optimizer_parameters)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 resnet.to(device)
 
-
 # In[30]:
 
 
 len(test_loader.dataset)
-
 
 # In[31]:
 
@@ -245,11 +228,11 @@ for epoch in range(epochs):
         loss.backward()
         optimizer.step()
         running_loss += loss.item() * inputs.size(0)
-        
+
         _, predicted = torch.max(outputs, 1)
         total_train += labels.size(0)
         correct_train += (predicted == labels).sum().item()
-        
+
     epoch_loss = running_loss / len(train_loader.dataset)
     train_accuracy = correct_train / total_train
     history["loss"].append(float(epoch_loss))
@@ -276,7 +259,7 @@ for epoch in range(epochs):
     if val_accuracy > best_val_accuracy:
         best_val_accuracy = val_accuracy
         best_model_weights = resnet.state_dict()
-        
+
     if val_loss < best_val_loss:
         best_val_loss = val_loss
         counter = 0
@@ -286,10 +269,9 @@ for epoch in range(epochs):
             print("Early stopping triggered. No improvement in validation loss.")
             break
 
-    
-    print(f"Epoch {epoch+1}/{epochs}, Train Loss: {epoch_loss:.4f}, Train Accuracy: {train_accuracy:.4f}, Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_accuracy:.4f}")
+    print(
+        f"Epoch {epoch + 1}/{epochs}, Train Loss: {epoch_loss:.4f}, Train Accuracy: {train_accuracy:.4f}, Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_accuracy:.4f}")
     print(str(datetime.now()))
-
 
 # In[32]:
 
@@ -297,7 +279,6 @@ for epoch in range(epochs):
 # Load the best model weights
 resnet.load_state_dict(best_model_weights)
 print("Best val accuracy:", best_val_accuracy)
-
 
 # In[33]:
 
@@ -314,7 +295,6 @@ total = 0
 class_correct = list(0. for _ in range(num_features))
 class_total = list(0. for _ in range(num_features))
 
-
 # In[35]:
 
 
@@ -325,13 +305,12 @@ with torch.no_grad():
         _, predicted = torch.max(outputs, 1)
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
-        
+
         c = (predicted == labels).squeeze()
         for i in range(len(labels)):
             label = labels[i]
             class_correct[label] += c[i].item()
             class_total[label] += 1
-
 
 # In[36]:
 
@@ -358,13 +337,11 @@ precision = precision_score(true_labels, predicted_labels, average='macro')
 recall = recall_score(true_labels, predicted_labels, average='macro')
 f1 = f1_score(true_labels, predicted_labels, average='macro')
 
-
 # In[37]:
 
 
 print(f"Accuracy on the test set: {accuracy:.4f}")
 print(f"Precision: {precision:.4f}, Recall: {recall:.4f}, F1 Score: {f1:.4f}")
-
 
 # In[38]:
 
@@ -372,12 +349,10 @@ print(f"Precision: {precision:.4f}, Recall: {recall:.4f}, F1 Score: {f1:.4f}")
 accuracy = correct / total
 print(f"Accuracy on the test set: {accuracy:.4f}")
 
-
 # In[39]:
 
 
-categories = [i+1 for i in range(num_features)]
-
+categories = [i + 1 for i in range(num_features)]
 
 # In[40]:
 
@@ -410,7 +385,6 @@ for i in range(num_features):
 
 
 0.91 - accuracy
-
 
 # In[43]:
 
@@ -445,12 +419,10 @@ result = {
     "test_recall": float(recall),
     "test_f1_score": float(f1),
     "precision_per_test_class": precisions
-    
+
 }
 
-
 # In[122]:
-
 
 
 # In[123]:
