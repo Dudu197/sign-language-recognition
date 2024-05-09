@@ -159,6 +159,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
 
+01_landmarks_extraction/bin
+
 99_old/web/node_modules
 99_old/model_results
 99_old/model_results_old

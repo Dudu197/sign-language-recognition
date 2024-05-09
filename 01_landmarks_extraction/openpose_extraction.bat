@@ -1,0 +1,4 @@
+python openpose_extraction.py Places
+python openpose_extraction.py Pronouns
+python openpose_extraction.py Seasons
+python openpose_extraction.py Society
