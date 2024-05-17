@@ -5,7 +5,7 @@ from extracted_landmarks import ExtractedLandmarks
 
 
 # Import Openpose (Windows/Ubuntu/OSX)
-dir_path = r"C:\Users\duduu\Downloads\openpose-1.7.0-binaries-win64-gpu-python3.7-flir-3d_recommended\openpose\python"
+dir_path = r"bin/openpose/python"
 try:
     # Change these variables to point to the correct folder (Release/x64 etc.)
     sys.path.append(dir_path + '/../bin/python/openpose/Release');
@@ -20,12 +20,12 @@ class OpenPoseExtractor:
     def __init__(self):
         params = dict()
         params[
-            "model_folder"] = r"C:\Users\duduu\Downloads\openpose-1.7.0-binaries-win64-gpu-python3.7-flir-3d_recommended\openpose\models/"
+            "model_folder"] = r"bin\openpose\models/"
         params["face"] = True
         params["hand"] = True
-        params["net_resolution"] = "-1x256"
-        params["face_net_resolution"] = "256x256"
-        params["hand_net_resolution"] = "256x256"
+        # params["net_resolution"] = "-1x256"
+        # params["face_net_resolution"] = "256x256"
+        # params["hand_net_resolution"] = "256x256"
 
         self.op_wrapper = op.WrapperPython()
         self.op_wrapper.configure(params)

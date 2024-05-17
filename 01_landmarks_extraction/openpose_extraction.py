@@ -4,12 +4,12 @@ import time
 from openpose import OpenPoseExtractor
 import pandas as pd
 import os
-import sys
+# import sys
 import re
 
 
 # category_to_process = int(sys.argv[1])
-category_to_process = sys.argv[1]
+# category_to_process = sys.argv[1]
 # category_to_process = "Acontecer"
 max_num_hands = 2
 
@@ -17,7 +17,6 @@ max_num_hands = 2
 base_path = "D:\\Projects\\datasets\\include50"
 # categories = os.listdir(base_path)
 # categories = [str(i + 1).ljust(2, "0") for i in range(20)]
-videos_data = []
 
 extractor = OpenPoseExtractor()
 
@@ -97,6 +96,7 @@ def extract_pose(pose):
 
 def process_video(video_path, category, category_index, video_name):
     print(f"Processing {category} - {video_name}")
+    videos_data = []
     landmarks = get_video_landmarks(video_path)
     frame_count = 0
     for l in landmarks:
@@ -112,7 +112,7 @@ def process_video(video_path, category, category_index, video_name):
         videos_data.append(frame_data)
     return frame_count
 
-videos_to_process = []
+# videos_to_process = []
 # for category_index in range(len(categories)):
 #     category = categories[category_index]
 #     videos = os.listdir(os.path.join(base_path, category))
@@ -120,14 +120,14 @@ videos_to_process = []
 #         process_video(base_path, category, video)
 
 
-for base_category in os.listdir(base_path):
-    if base_category != category_to_process or "." in base_category:
-        continue
-    for category in os.listdir(os.path.join(base_path, base_category)):
-        for video in os.listdir(os.path.join(base_path, base_category, category)):
-            video_path = os.path.join(base_category, category, video)
-            signaler = 0
-            videos_to_process.append((video_path, category, f"{base_category}_{signaler}", signaler))
+# for base_category in os.listdir(base_path):
+#     if base_category != category_to_process or "." in base_category:
+#         continue
+#     for category in os.listdir(os.path.join(base_path, base_category)):
+#         for video in os.listdir(os.path.join(base_path, base_category, category)):
+#             video_path = os.path.join(base_category, category, video)
+#             signaler = 0
+#             videos_to_process.append((video_path, category, f"{base_category}_{signaler}", signaler))
 
 
 
@@ -147,23 +147,22 @@ for base_category in os.listdir(base_path):
     #     continue
     # videos_to_process.append((video, 0, 0, 0))
 
-processed = 0
-videos_len = len(videos_to_process)
-total_start_time = time.time()
-for video, category, signaler, index in videos_to_process:
-    processed += 1
-    start_time = time.time()
-    frame_count = process_video(os.path.join(base_path, video), category, category, video)
-    end_time = time.time()
-    duration = end_time - start_time
-    eta = duration * (videos_len - processed)
-    print(f"Benchmark: duration: {duration}; frames: {frame_count}")
-    print(f"Duration: {duration}s. ETA: {int(eta/60)}m")
+def process(videos_to_process):
+    processed = 0
+    videos_len = len(videos_to_process)
+    total_start_time = time.time()
+    for video, category, signaler, index in videos_to_process:
+        processed += 1
+        start_time = time.time()
+        frame_count = process_video(os.path.join(base_path, video), category, category, video)
+        end_time = time.time()
+        duration = end_time - start_time
+        eta = duration * (videos_len - processed)
+        print(f"Benchmark: duration: {duration}; frames: {frame_count}")
+        print(f"Duration: {duration}s. ETA: {int(eta/60)}m")
 
-total_end_time = time.time()
-total_time = total_end_time - total_start_time
-print(f"Total execution time: {int(total_time/60)}m or {total_time}s")
-
-
-df = pd.DataFrame(videos_data)
-df.to_csv(f"dataset_output/include50/raw/include50_{category_to_process}.csv")
+    total_end_time = time.time()
+    total_time = total_end_time - total_start_time
+    print(f"Total execution time: {int(total_time/60)}m or {total_time}s")
+    df = pd.DataFrame(videos_data)
+    return df

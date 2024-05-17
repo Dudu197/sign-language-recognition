@@ -37,11 +37,11 @@ dataset_name = sys.argv[6]
 ref = sys.argv[7]
 seed = int(sys.argv[3])
 
-if not os.path.exists(os.path.join("results", ref, dataset_name)):
-    if not os.path.exists(os.path.join("results", ref)):
-        os.mkdir(os.path.join("results", ref))
-    os.mkdir(os.path.join("results", ref, dataset_name))
-    os.mkdir(os.path.join("results", ref, dataset_name, "models"))
+if not os.path.exists(os.path.join("../99_model_output/results", ref, dataset_name)):
+    if not os.path.exists(os.path.join("../99_model_output/results", ref)):
+        os.mkdir(os.path.join("../99_model_output/results", ref))
+    os.mkdir(os.path.join("../99_model_output/results", ref, dataset_name))
+    os.mkdir(os.path.join("../99_model_output/results", ref, dataset_name, "models"))
 
 
 # In[13]:
@@ -53,15 +53,15 @@ torch.manual_seed(seed)
 # In[14]:
 
 if dataset_name == "minds":
-    # df = pd.read_csv("../dataset_output/libras_minds/libras_minds_openpose_80_frames.csv")
-    df = pd.read_csv("../dataset_output/libras_minds/libras_minds_openpose.csv")
+    # df = pd.read_csv("../00_datasets/dataset_output/libras_minds/libras_minds_openpose_80_frames.csv")
+    df = pd.read_csv("../00_datasets/dataset_output/libras_minds/libras_minds_openpose.csv")
     frames = 80
 elif dataset_name == "ufop":
-    df = pd.read_csv("../dataset_output/libras_ufop/libras_ufop_openpose.csv")
-    # df = pd.read_csv("../dataset_output/libras_ufop/libras_ufop_openpose_60_frames.csv")
+    df = pd.read_csv("../00_datasets/dataset_output/libras_ufop/libras_ufop_openpose.csv")
+    # df = pd.read_csv("../00_datasets/dataset_output/libras_ufop/libras_ufop_openpose_60_frames.csv")
     frames = 60
 elif dataset_name == "ksl":
-    df = pd.read_csv("../dataset_output/KSL/ksl_openpose.csv")
+    df = pd.read_csv("../00_datasets/dataset_output/KSL/ksl_openpose.csv")
     frames = 1
 else:
     raise ValueError("Invalid dataset name")
@@ -460,8 +460,8 @@ result = {
 
 
 file_name = str(datetime.now()).replace(" ", "_")
-file_path = os.path.join("results", ref, dataset_name, file_name + ".json")
-model_path = os.path.join("results", ref, dataset_name, "models", file_name + ".pth")
+file_path = os.path.join("../99_model_output/results", ref, dataset_name, file_name + ".json")
+model_path = os.path.join("../99_model_output/results", ref, dataset_name, "models", file_name + ".pth")
 with open(file_path, "w") as f:
     json.dump(result, f, default=int)
 

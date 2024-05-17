@@ -6,7 +6,9 @@ import numpy as np
 
 # df = pd.read_csv("dataset_output/libras_ufop/libras_ufop_openpose.csv")
 # df = pd.read_csv("dataset_output/libras_minds/libras_minds_openpose_80_frames.csv")
-df = pd.read_csv("dataset_output/include50/include50_openpose.csv")
+# df = pd.read_csv("../00_datasets/dataset_output/include50/raw/include50_Animals.csv")
+df = pd.read_csv("../00_datasets/dataset_output/include50/raw/include50_Adjectives.csv")
+# df = pd.read_csv("../00_datasets/dataset_output/include50/include50_openpose.csv")
 # df = pd.read_csv("datasets/libras_minds_dataset_openpose.csv")
 # df = pd.read_csv("datasets/dot/daniele/Abias.MOV.csv")
 # print(df)

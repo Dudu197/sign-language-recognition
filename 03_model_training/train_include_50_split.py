@@ -15,6 +15,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, random_split
 from torchvision.models import resnet18
 from sklearn.metrics import confusion_matrix, f1_score, precision_score, recall_score
+from sklearn.model_selection import train_test_split
 import seaborn as sns
 import os
 import sys
@@ -92,17 +93,20 @@ def read_file(filename):
     return lines
 
 # In[19]:
-train_videos = read_file("../00_datasets/dataset_output/include50/include50_train.txt")
-test_videos = read_file("../00_datasets/dataset_output/include50/include50_test.txt")
-validate_videos = read_file("../00_datasets/dataset_output/include50/include50_val.txt")
 
-train_df = df[df["video_name"].isin(train_videos)].copy()
-test_df = df[df["video_name"].isin(test_videos)].copy()
-validate_df = df[df["video_name"].isin(validate_videos)].copy()
+df_videos = df[df["frame"] == 1]
+
+train_videos, test_videos = train_test_split(df_videos["video_name"], test_size=0.3, random_state=seed, stratify=df_videos["category"])
+
+train_df = df[df["video_name"].isin(train_videos)]
+test_df = df[df["video_name"].isin(test_videos)]
+
+df_videos = None
+df = train_df
 
 print(f"Train size: {len(train_df)}")
 print(f"Test size: {len(test_df)}")
-print(f"Validate size: {len(validate_df)}")
+# print(f"Validate size: {len(validate_df)}")
 
 
 print("Processing train")
@@ -197,6 +201,7 @@ optimizer = optim.Adam(resnet.parameters(), **optimizer_parameters)
 
 # Train the model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Device: {device}")
 resnet.to(device)
 
 # In[30]:
