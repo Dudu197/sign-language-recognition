@@ -1,2 +1,3 @@
-# samaan_slr
-Code implementation of Samaan et. al. SLR (https://www.mdpi.com/2079-9292/11/19/3228)
+# Sign Language Recognition
+
+[Paper link](https://arxiv.org/abs/2404.19148)

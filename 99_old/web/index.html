@@ -1,0 +1,44 @@
+<html>
+	<head></head>
+	<body>
+		<!-- Import @tensorflow/tfjs-core -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script> -->
+		<!-- Adds the CPU backend -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-cpu"></script> -->
+		<!--
+		  Import @tensorflow/tfjs-tflite
+
+		  Note that we need to explicitly load dist/tf-tflite.min.js so that it can
+		  locate WASM module files from their default location (dist/).
+		-->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.10/dist/tf-tflite.min.js"></script> -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script> -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@4.11.0/dist/tf-backend-wasm.min.js"></script> -->
+
+		<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.6/dist/tf-tflite.min.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+		<script>
+			var dataToPredict = null;
+			$.getJSON('test_data.json', function(data) {
+			    dataToPredict = data;
+			    predict();
+			});
+
+			async function predict(){
+				var date1 = new Date();
+				const model = await tf.loadLayersModel('http://' + window.location.host + '/model_js/model.json');
+				var date2 = new Date();
+				console.log("Model loaded in " + (date2 - date1) + " ms");
+				var date1 = new Date();
+				var tensorData = tf.tensor3d([dataToPredict]);
+				await model.predict(tensorData).print();
+				var date2 = new Date();
+				console.log("Data predicted in " + (date2 - date1) + " ms");
+				alert("Data predicted in " + (date2 - date1) + " ms");
+			}
+			
+		</script>
+	</body>
+</html>

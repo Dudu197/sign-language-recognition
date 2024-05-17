@@ -1,0 +1,2 @@
+python openpose_extraction.py Adjectives
+python openpose_extraction.py Animals
