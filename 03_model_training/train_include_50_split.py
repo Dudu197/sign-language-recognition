@@ -96,15 +96,26 @@ def read_file(filename):
 
 df_videos = df[df["frame"] == 1]
 
-train_videos, test_videos = train_test_split(df_videos["video_name"], test_size=0.3, random_state=seed, stratify=df_videos["category"])
+pre_train_videos, test_videos = train_test_split(df_videos["video_name"], test_size=0.2, stratify=df_videos["category"])
 
-train_df = df[df["video_name"].isin(train_videos)]
+pre_train_df = df_videos[df_videos["video_name"].isin(pre_train_videos)]
 test_df = df[df["video_name"].isin(test_videos)]
+
+train_videos, validate_videos = train_test_split(pre_train_df["video_name"], test_size=0.2, stratify=pre_train_df["category"])
+train_df = df[df["video_name"].isin(train_videos)]
+validate_df = df[df["video_name"].isin(validate_videos)]
 
 df_videos = None
 df = train_df
 
+print(f"Pre Train Videos: {len(pre_train_videos)}")
+print(f"Train Videos: {len(train_videos)}")
 print(f"Train size: {len(train_df)}")
+print()
+print(f"Validate Videos: {len(validate_videos)}")
+print(f"Validate size: {len(validate_df)}")
+print()
+print(f"Test Video: {len(test_videos)}")
 print(f"Test size: {len(test_df)}")
 # print(f"Validate size: {len(validate_df)}")
 

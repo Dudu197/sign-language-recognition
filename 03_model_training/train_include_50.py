@@ -73,7 +73,7 @@ else:
 test_people = [int(i) for i in sys.argv[2].split(",")]
 # train_people = people[:-2]
 
-epochs = 50
+epochs = 20
 
 # In[18]:
 
