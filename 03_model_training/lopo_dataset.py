@@ -38,8 +38,9 @@ class LopoDataset(Dataset):
         category = df["category"]
         x = df["x"]
         y = df["y"]
+        z = df["z"]
         if self.augment:
-            x, y = self.perform_augmentation(x, y)
+            x, y, z = self.perform_augmentation(x, y, z)
         image = self.landmarks_to_image(x, y)
         image = Image.fromarray(np.uint8(image * 255)).convert('RGB')
         # image = torch.tensor(image, dtype=torch.float32)
@@ -54,16 +55,17 @@ class LopoDataset(Dataset):
         category = df["category"]
         x = df["x"]
         y = df["y"]
+        z = df["z"]
         if augment:
-            x, y = self.perform_augmentation(x, y)
-        return x, y, category
+            x, y, z = self.perform_augmentation(x, y, z)
+        return x, y, z, category
 
     def reset_random(self):
         np.random.seed(self.seed)
 
     def get_signs(self, df):
         signs = list(df.columns)
-        signs = [s for s in signs if s.endswith("_x") or s.endswith("_y")]
+        signs = [s for s in signs if s.endswith("_x") or s.endswith("_y") or s.endswith("_z")]
         excluded_body_landmarks = [10, 11, 13, 14, 19, 20, 21, 22, 23, 24]
         excluded_body_landmarks = tuple([f"pose_{i}" for i in excluded_body_landmarks])
         unwanted_pose_columns = [i for i in list(signs) if i.startswith(excluded_body_landmarks)]
@@ -122,41 +124,54 @@ class LopoDataset(Dataset):
             df_video = df_video.drop(["category", "video_name", "frame"], axis=1)
             x = self.get_axis_df(df_video, "x")
             y = self.get_axis_df(df_video, "y")
+            z = self.get_axis_df(df_video, "z")
+
             x = x.T.to_numpy()
             y = y.T.to_numpy()
+            z = z.T.to_numpy()
+
             x = self.normalize_axis(x)
             y = self.normalize_axis(y)
+            z = self.normalize_axis(z)
+
             # image = self.landmarks_to_image(x, y)
             data.append({
                 "video_name": video,
                 "x": x,
                 "y": y,
+                "z": z,
                 "category": category
             })
         return pd.DataFrame.from_dict(data)
 
-    def rotate_landmarks(self, x, y, rotation_angle):
+    def rotate_landmarks(self, x, y, z, rotation_angle):
         # Assuming landmarks are in (x, y, z) format
-        landmarks = np.column_stack((x.ravel(), y.ravel()))
+        landmarks = np.column_stack((x.ravel(), y.ravel(), z.ravel()))
 
-        # Calculate the centroid (center) of the landmarks
-        #     centroid = np.mean(landmarks, axis=0)
-        centroid = 0.5
+        # Calculate the centroid (center) of the landmarks for X and Y only
+        centroid_x = np.mean(landmarks[:, 0])
+        centroid_y = np.mean(landmarks[:, 1])
+        centroid = np.array([centroid_x, centroid_y])
 
         # Translate landmarks to the origin (center)
-        translated_landmarks = landmarks - centroid
+        translated_landmarks = landmarks[:, :2] - centroid
+
         # Create a rotation matrix for the given angle (in radians)
         rotation_matrix = np.array([[np.cos(rotation_angle), -np.sin(rotation_angle)],
                                     [np.sin(rotation_angle), np.cos(rotation_angle)]])
 
-        # Apply the rotation to each landmark
-        #     print(rotation_matrix)
-        rotated_landmarks = np.dot(translated_landmarks, rotation_matrix) + centroid
+        # Apply the rotation to each landmark in the XY plane
+        rotated_xy = np.dot(translated_landmarks, rotation_matrix) + centroid
 
+        # Keep the Z values unchanged
+        rotated_landmarks = np.column_stack((rotated_xy, landmarks[:, 2]))
+
+        # Reshape the rotated landmarks back to the original shape
         x_rotated = rotated_landmarks[:, 0].reshape(x.shape)
         y_rotated = rotated_landmarks[:, 1].reshape(y.shape)
+        z_rotated = rotated_landmarks[:, 2].reshape(z.shape)
 
-        return x_rotated, y_rotated
+        return x_rotated, y_rotated, z_rotated
 
     def zoom_landmarks(self, landmarks, zoom_factor):
         # Scale the landmarks by the zoom factor
@@ -170,8 +185,8 @@ class LopoDataset(Dataset):
 
         return translated_landmarks
 
-    def apply_transformation(self, x, y, rotation, zoom, translate_x, translate_y, mirror_chance):
-        x, y = self.rotate_landmarks(x, y, math.radians(rotation))
+    def apply_transformation(self, x, y, z, rotation, zoom, translate_x, translate_y, translate_z, mirror_chance):
+        x, y, z = self.rotate_landmarks(x, y, z, math.radians(rotation))
 
         x = self.zoom_landmarks(x, zoom)
         x = self.translate_landmarks(x, [translate_x])
@@ -180,21 +195,26 @@ class LopoDataset(Dataset):
         y = self.zoom_landmarks(y, zoom)
         y = self.translate_landmarks(y, [translate_y])
 
-        return x, y
+        z = self.zoom_landmarks(z, zoom)
+        z = self.translate_landmarks(z, [translate_z])
 
-    def perform_augmentation(self, x, y):
+        return x, y, z
+
+    def perform_augmentation(self, x, y, z):
         rotation_sigma = 12
         zoom_sigma = 0.1
         translate_x_sigma = 0.06
         translate_y_sigma = 0.0
+        translate_z_sigma = 0.0
         mirror_chance = 0.3
         rotation = np.random.normal(0, rotation_sigma)
         zoom = np.random.normal(0, zoom_sigma) + 1
         translate_x = np.random.normal(0, translate_x_sigma)
         translate_y = np.random.normal(0, translate_y_sigma)
+        translate_z = np.random.normal(0, translate_z_sigma)
         mirror_chance = mirror_chance
-        x, y = self.apply_transformation(x, y, rotation, zoom, translate_x, translate_y, mirror_chance)
-        return x, y
+        x, y, z = self.apply_transformation(x, y, z, rotation, zoom, translate_x, translate_y, translate_z, mirror_chance)
+        return x, y, z
 
     def mirror_flip_landmarks_horizontally(self, df, mirror_chance):
         # Mirror flip the x-coordinates horizontally
