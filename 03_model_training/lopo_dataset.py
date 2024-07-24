@@ -11,7 +11,7 @@ import time
 
 
 class LopoDataset(Dataset):
-    def __init__(self, dataframe, frames, transforms=None, augment=True, transform_distance=False, person_in=[], person_out=[], seed=None, print_timing=False):
+    def __init__(self, dataframe, frames, transforms=None, augment=True, transform_distance=False, person_in=[], person_out=[], seed=None, print_timing=False, image_method=None):
         self.transforms = transforms
         self.seed = seed
         self.print_timing = print_timing
@@ -29,6 +29,7 @@ class LopoDataset(Dataset):
         self.signs = self.get_signs(dataframe)
         self.categories = list(dataframe["category"].unique())
         self.df = self.prepare_data(dataframe)
+        self.image_method = image_method
         
     def __len__(self):
         return len(self.df)
@@ -41,7 +42,7 @@ class LopoDataset(Dataset):
         z = df["z"]
         if self.augment:
             x, y, z = self.perform_augmentation(x, y, z)
-        image = self.landmarks_to_image(x, y)
+        image = self.landmarks_to_image(x, y, z)
         image = Image.fromarray(np.uint8(image * 255)).convert('RGB')
         # image = torch.tensor(image, dtype=torch.float32)
         if self.transforms:
@@ -81,22 +82,14 @@ class LopoDataset(Dataset):
     def reshape_target_dataset(self, target):
         return target.reshape((int(target.shape[0]/self.frames), self.frames))[:, 0]
 
-    def landmarks_to_image(self, x, y, n=3, normalize=False):
+    def landmarks_to_image(self, x, y, z, n=3, normalize=False):
         # Remove cols until the width is multiple of n
         start_time = time.time()
-        width = x.shape[1]
-        if width % n != 0:
-            extra_cols = width % n
-            x = x[:, : width - extra_cols]
-            y = y[:, : width - extra_cols]
-
-        X = np.reshape(x, (x.shape[0], -1, n))
-        Y = np.reshape(y, (y.shape[0], -1, n))
-        I = np.concatenate([X, Y], axis=1)
+        image = self.image_method.transform(x, y, z)
         end_time = time.time()
         if self.print_timing:
             print(f"landmarks_to_image duration: {end_time - start_time}")
-        return I
+        return image
 
     def normalize_axis(self, axis):
         axis[axis < 0] = 0

@@ -1,132 +1,147 @@
-python train_pytorch_imagenet18_lopo.py 1 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 1 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 1 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 1 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 1 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 1 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 1 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 1 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 1 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 1 11 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 1 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 11 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 2 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 11 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 3 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 11 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 4 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 11 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 5 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 11 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 6 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 11 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 7 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 11 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 8 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 11 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 9 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 11 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 10 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 11 12 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 1 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 2 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 3 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 4 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 5 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 6 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 7 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 8 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 9 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 10 1638102311 $1 $2 minds $3
-python train_pytorch_imagenet18_lopo.py 12 11 1638102311 $1 $2 minds $3
+python train_pytorch_imagenet18_lopo.py -vp 1 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 2 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 3 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 5 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 6 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 7 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 8 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 9 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 10 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 11 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 12 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+
+
+
+
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 1 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 2 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 3 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 4 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 5 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 6 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 7 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 8 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 9 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 10 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 11 -tp 12 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 1 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 9 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 10 -lr $1 -wd $2 -d minds -r $3 -im $4
+#python train_pytorch_imagenet18_lopo.py -vp 12 -tp 11 -lr $1 -wd $2 -d minds -r $3 -im $4

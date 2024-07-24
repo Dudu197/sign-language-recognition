@@ -1,3 +1,5 @@
+# learning_rate weight_decay ref image_method
+
 #./train_batch_minds.sh 0.0001 0.001 05
 #./train_batch_minds.sh 0.0001 0.0001 06
 #./train_batch_minds.sh 0.0001 0.00001 07
@@ -13,7 +15,15 @@
 #./train_batch_minds.sh 0.0001 0.0001 15
 #./train_batch_ufop.sh 0.0001 0.0001 15
 #./train_batch_ksl.sh 0.0001 0.0001 15
-./train_batch_include50.sh 0.0001 0.0001 15
+#./train_batch_include50.sh 0.0001 0.0001 15
 
 #./train_batch_minds.sh 0.0001 0.0001 17
 #./train_batch_ufop.sh 0.0001 0.0001 17
+
+#./train_batch_minds.sh 0.0001 0.0001 19 SL-DML
+#./train_batch_ufop.sh 0.0001 0.0001 19 SL-DML
+
+#./train_batch_minds.sh 0.00001 0.0001 20 Skeleton-DML vit_medium
+./train_batch_ufop.sh 0.00001 0.0001 20 Skeleton-DML vit_medium
+#./train_batch_ksl.sh 0.00001 0.0001 20 Skeleton-DML vit_medium
+#./train_batch_include50.sh 0.00001 0.0001 20 Skeleton-DML vit_medium

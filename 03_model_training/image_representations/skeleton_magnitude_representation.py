@@ -1,11 +1,13 @@
-from base_image_representation import BaseImageRepresentation
+from .base_image_representation import BaseImageRepresentation
 import numpy as np
 
 
 class SkeletonMagnitudeRepresentation(BaseImageRepresentation):
-    name = "Skeleton Magnitude"
+    name = "Skeleton-Magnitude"
 
-    def __init__(self, temporal_scales):
+    def __init__(self, temporal_scales=None):
+        if temporal_scales is None:
+            temporal_scales = [5, 10, 15]
         self.temporal_scales = temporal_scales
 
     def transform(self, x, y, z):
