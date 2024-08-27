@@ -11,7 +11,7 @@ import time
 
 
 class LopoDataset(Dataset):
-    def __init__(self, dataframe, frames, transforms=None, augment=True, transform_distance=False, person_in=[], person_out=[], seed=None, print_timing=False, image_method=None):
+    def __init__(self, dataframe, transforms=None, augment=True, transform_distance=False, person_in=[], person_out=[], seed=None, print_timing=False, image_method=None):
         self.transforms = transforms
         self.seed = seed
         self.print_timing = print_timing
@@ -20,8 +20,6 @@ class LopoDataset(Dataset):
 
         if transform_distance:
             dataframe = self.transform_distance_landmarks(dataframe)
-
-        self.frames = frames
         self.augment = augment
         self.transform_distance = transform_distance
         self.person_in = person_in
@@ -75,12 +73,6 @@ class LopoDataset(Dataset):
 
     def get_axis_df(self, df, axis):
         return df[[c for c in self.signs if c.endswith(axis)]]
-
-    def reshape_features_dataset(self, features):
-        return features.reshape((int(features.shape[0]/self.frames), self.frames, features.shape[1]))
-
-    def reshape_target_dataset(self, target):
-        return target.reshape((int(target.shape[0]/self.frames), self.frames))[:, 0]
 
     def landmarks_to_image(self, x, y, z, n=3, normalize=False):
         # Remove cols until the width is multiple of n

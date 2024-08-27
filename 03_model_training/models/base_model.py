@@ -13,6 +13,10 @@ class BaseModel(ABC):
         pass
 
     @abstractmethod
+    def get_fc_layer(self):
+        pass
+
+    @abstractmethod
     def get_transformers(self):
         pass
 

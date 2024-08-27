@@ -1,6 +1,7 @@
 python train_pytorch_imagenet18_lopo.py -vp 1 -tp 2 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
 python train_pytorch_imagenet18_lopo.py -vp 2 -tp 3 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
 python train_pytorch_imagenet18_lopo.py -vp 3 -tp 4 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
+python train_pytorch_imagenet18_lopo.py -vp 4 -tp 5 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
 python train_pytorch_imagenet18_lopo.py -vp 5 -tp 6 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
 python train_pytorch_imagenet18_lopo.py -vp 6 -tp 7 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
 python train_pytorch_imagenet18_lopo.py -vp 7 -tp 8 -lr $1 -wd $2 -d minds -r $3 -im $4 -m $5
