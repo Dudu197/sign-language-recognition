@@ -4,3 +4,5 @@ matplotlib~=3.5.3
 pandas~=1.3.5
 pillow~=9.5.0
 torch==2.0.1
+torchvision==0.15.2
+scikit-learn==1.3.0
