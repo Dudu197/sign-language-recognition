@@ -14,9 +14,11 @@ import re
 max_num_hands = 2
 
 # base_path = "Videos/Videos"
-base_path = "D:\\Projects\\datasets\\include50"
+base_path = "D:\\Projects\\datasets\\daniele"
 # categories = os.listdir(base_path)
 # categories = [str(i + 1).ljust(2, "0") for i in range(20)]
+
+videos_data = []
 
 extractor = OpenPoseExtractor()
 
@@ -94,16 +96,16 @@ def extract_pose(pose):
     return landmarks
 
 
-def process_video(video_path, category, category_index, video_name):
+def process_video(video_path, category, category_index, video_name, signaler):
     print(f"Processing {category} - {video_name}")
-    videos_data = []
     landmarks = get_video_landmarks(video_path)
     frame_count = 0
     for l in landmarks:
         frame_data = {
             "category": category_index,
             "video_name": video_name,
-            "frame": frame_count
+            "frame": frame_count,
+            "person": signaler
         }
         frame_data.update(extract_hands(l.hands_landmarks))
         frame_data.update(extract_face(l.face_landmarks))
@@ -154,7 +156,7 @@ def process(videos_to_process):
     for video, category, signaler, index in videos_to_process:
         processed += 1
         start_time = time.time()
-        frame_count = process_video(os.path.join(base_path, video), category, category, video)
+        frame_count = process_video(os.path.join(base_path, video), category, category, video, signaler)
         end_time = time.time()
         duration = end_time - start_time
         eta = duration * (videos_len - processed)
@@ -166,3 +168,7 @@ def process(videos_to_process):
     print(f"Total execution time: {int(total_time/60)}m or {total_time}s")
     df = pd.DataFrame(videos_data)
     return df
+
+videos_to_process = [(os.path.join(base_path, i), i, 0, 0) for i in os.listdir(base_path)]
+df = process(videos_to_process)
+df.to_csv("../00_datasets/dataset_output/daniele/daniele_openpose.csv", index=False)
