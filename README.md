@@ -6,7 +6,7 @@ This repository contains the code for the paper "Enhancing Brazilian Sign Langua
 
 This repository is under refactoring. The code was original design for experiments, and now we are working to make it more user-friendly.
 
-If you only want to train the model, you can use the [sign-language-recognition-model](https://github.com/Dudu197/sign-language-recognition-model) repository.
+If you **only want to train the model**, you can use the [sign-language-recognition-model](https://github.com/Dudu197/sign-language-recognition-model) repository.
 
 It is a simpler version of the original code, where you can run in a few minutes.
 
