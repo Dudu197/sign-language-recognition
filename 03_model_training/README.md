@@ -1,47 +1,67 @@
-# Training the model
+# Model Training
 
-This folder contains the code for training the model.
+This folder contains all scripts and resources for training sign language recognition models using various datasets and architectures.
 
-The file `model_training.py` contains the code for training the model using the dataset and hyperparameters.
+## Table of Contents
+- [Overview](#overview)
+- [Folder Structure](#folder-structure)
+- [Available Models & Image Representations](#available-models--image-representations)
+- [Hyperparameters & Command-Line Arguments](#hyperparameters--command-line-arguments)
+- [Datasets](#datasets)
+- [Running Experiments](#running-experiments)
+  - [Batch Training (LOPO)](#batch-training-lopo)
+  - [Single Training](#single-training)
+- [Troubleshooting & Tips](#troubleshooting--tips)
+- [References](#references)
 
-Because some datasets require a different preprocessing, the code is prepared to receive the dataset DataFrame as a parameter.
+## Overview
+This module enables training and evaluation of deep learning models for sign language recognition. It supports different datasets, preprocessing methods, and model architectures. The code is designed for flexibility and reproducibility, supporting both single-run and batch (LOPO) experiments.
 
-The available hyperparameters are:
+## Folder Structure
+- `model_training.py` — Main script for training models.
+- `lopo_dataset.py` — Utilities for Leave-One-Person-Out (LOPO) dataset splitting.
+- `models/` — Model architecture definitions (e.g., ResNet, EfficientNet, ViT).
+- `image_representations/` — Methods for converting skeleton data to image representations.
+- `notebooks/` — Jupyter notebooks for exploration and prototyping.
+- `run_all_batches.sh` — Script to automate batch LOPO training.
+- `save_dataset.py` — Utility for saving processed datasets.
+- `show_results.py` — Script for visualizing results.
 
-- `-d` or `--dataset_name`: The name of the dataset. It can be `minds` or `ufop`.
-- `-s` or `--seed`: The seed for the random number generator.
-- `-vp` or `--validate_people`: The people to be used for validation. It can be a list of integers separated by commas without space.
-- `-tp` or `--test_people`: The people to be used for testing. It can be a list of integers separated by commas without space.
-- `-lr` or `--learning_rate`: The learning rate for the optimizer.
-- `-wd` or `--weight_decay`: The weight decay for the optimizer.
-- `-im` or `--image_method`: The method to be used for image representation. It can be `Skeleton-DML`.
-- `-m` or `--model`: The model to be used. It can be `resnet18`.
-- `-r` or `--ref`: The reference for the model. It can be an integer, representing the reference number of the training (which will be saved in `99_model_output/results`.
+## Available Models & Image Representations
+- **Models:**
+  - `resnet18`, `resnet50`, `efficientnet_b6`, `mobilenet_v4_hybrid_medium`, `vit_l_16`, `vit_medium`
+- **Image Representations:**
+  - `Skeleton-DML`, `Skeleton-Magnitude`, `SL-DML` (see `image_representations/` for details)
 
+## Hyperparameters & Command-Line Arguments
+The main training script (`model_training.py`) accepts the following arguments:
 
-## Running the code
+- `-d`, `--dataset_name`         — Dataset name (`minds`, `ufop`)
+- `-s`, `--seed`                 — Random seed (int)
+- `-vp`, `--validate_people`     — Validation people (comma-separated ints, e.g., `1,2,3`)
+- `-tp`, `--test_people`         — Test people (comma-separated ints, e.g., `4,5`)
+- `-lr`, `--learning_rate`       — Learning rate (float)
+- `-wd`, `--weight_decay`        — Weight decay (float)
+- `-im`, `--image_method`        — Image representation method (see above)
+- `-m`, `--model`                — Model architecture (see above)
+- `-r`, `--ref`                  — Reference number for experiment tracking (int)
 
-### Datasets
+## Pre-proccesed Datasets
+- **MINDS-Libras:** Preprocessed version available [here](https://drive.google.com/file/d/1qx2JudpjPgpp4-fpJ7YVMrszWV4lYPCd/view?usp=drive_link).
+  - Place at: `00_datasets/dataset_output/libras_minds/libras_minds_openpose.csv`
 
-The code was tested using the MINDS-Libras and Libras-UFOP datasets.
+## Running Experiments
 
-The preprocessed MINDS-Libras dataset can be downloaded [here](https://drive.google.com/file/d/1qx2JudpjPgpp4-fpJ7YVMrszWV4lYPCd/view?usp=drive_link).
-
-The code expects the dataset to be in `00_datasets/dataset_output/libras_minds/libras_minds_openpose.csv`
-
-### Batch
-
-Since we train using the LOPO strategy, we need to run the code multiple times, changing the people used for validation and testing.
-
-To run the code in batch, you can use the `run_all_batches.sh` script.
+### Batch Training (LOPO)
+For Leave-One-Person-Out (LOPO) experiments, use the provided batch script:
 
 ```bash
 ./run_all_batches.sh
 ```
+This will iterate over all splits, training and evaluating the model for each.
 
-### Single
-
-To run the code for a single training, you can use the following command:
+### Single Training
+To run a single experiment with custom parameters:
 
 ```bash
 python model_training.py -d minds -s 42 -vp 1,2,3 -tp 4,5 -lr 0.001 -wd 0.0001 -im Skeleton-DML -m resnet18 -r 1
