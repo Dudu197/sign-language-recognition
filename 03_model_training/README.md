@@ -49,6 +49,10 @@ The main training script (`model_training.py`) accepts the following arguments:
 ## Pre-proccesed Datasets
 - **MINDS-Libras:** Preprocessed version available [here](https://drive.google.com/file/d/1qx2JudpjPgpp4-fpJ7YVMrszWV4lYPCd/view?usp=drive_link).
   - Place at: `00_datasets/dataset_output/libras_minds/libras_minds_openpose.csv`
+- **Include-50:** Preprocessed version available [here](https://drive.google.com/file/d/14SbYpFIbHi_Is1hD9XH9Sg_5eF--xtAw/view?usp=sharing).
+  - Place at: `00_datasets/dataset_output/include50/include50_openpose.csv`
+- **KSL:** Preprocessed version available [here](https://drive.google.com/file/d/1-27qX-KtCE3RknzASvXuJ-aVZAQ60tNj/view?usp=sharing).
+  - Place at: `00_datasets/dataset_output/KSL/ksl_openpose.csv`
 
 ## Running Experiments
 

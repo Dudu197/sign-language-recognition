@@ -1,90 +1,150 @@
 # Sign Language Recognition
 
-This repository contains the code for the paper "Enhancing Brazilian Sign Language Recognition through Skeleton Image Representation".
+Enhancing Brazilian Sign Language Recognition through Skeleton Image Representation
 
-# Disclaimer
+---
 
-This repository is under refactoring. The code was original design for experiments, and now we are working to make it more user-friendly.
+## Overview
 
-If you **only want to train the model**, you can use the [sign-language-recognition-model](https://github.com/Dudu197/sign-language-recognition-model) repository.
+This repository contains the code for the paper:
 
-It is a simpler version of the original code, where you can run in a few minutes.
+> **Alves, Carlos Eduardo GR, Francisco de Assis Boldt, and Thiago M. Paixão. "Enhancing Brazilian Sign Language Recognition through Skeleton Image Representation." arXiv preprint arXiv:2404.19148 (2024).**
 
-If you have any questions, feel free to open an issue.
+We propose a novel approach to Sign Language Recognition (SLR) using skeleton image representations, achieving state-of-the-art results on Brazilian Sign Language datasets.
 
-# Content
+---
 
-- [Introduction](#introduction)
-- [Requirements](#requirements)
+## Table of Contents
+- [Overview](#overview)
+- [Disclaimer](#disclaimer)
+- [Requirements & Installation](#requirements--installation)
 - [Dataset](#dataset)
+- [Directory Structure](#directory-structure)
 - [Preprocessing](#preprocessing)
 - [Training](#training)
 - [Results](#results)
 - [Citation](#citation)
+- [Contributing](#contributing)
+- [License](#license)
 
-# Introduction
+---
 
-Sign Language Recognition (SLR) is a challenging task that has been widely studied in the literature.
-In this work, we propose a novel approach to SLR based on skeleton images.
+## Disclaimer
 
-# Requirements
+This repository is under refactoring. The code was originally designed for experiments and is being improved for user-friendliness.
 
-The code was implemented in Python 3.7 and the following libraries are required:
+If you **only want to train the model**, use the [sign-language-recognition-model](https://github.com/Dudu197/sign-language-recognition-model) repository for a simpler, quick-start version.
 
+For questions, please open an issue.
 
-# Dataset
+---
 
-We used two Brazilian Sign Language (Libras) datasets to evaluate our model: MINDS-Libras and Libras-UFOP.
+## Requirements & Installation
 
-## MINDS-Libras
+- **Python 3.7**
+- Required libraries are listed in `requirements.txt`.
 
-The [MINDS-Libras dataset](https://link.springer.com/article/10.1007/s00521-021-05802-4) consists in 20 signs, with 12 signers performing the sign 5 times.
+**Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
 
-The dataset is publicly available at [Zenodo](https://zenodo.org/records/2667329)
+---
 
-## Libras-UFOP
+## Dataset
 
-The [Libras-UFOP dataset](https://www.sciencedirect.com/science/article/pii/S0957417420309143) has 56 signs, performed by 5 signers, repeating each sign from 8 to 16 times.
+We use two Brazilian Sign Language (Libras) datasets:
 
-# Preprocessing
+### MINDS-Libras
+- 20 signs, 12 signers, 5 repetitions per sign.
+- [Dataset on Zenodo](https://zenodo.org/records/2667329)
+- [Paper](https://link.springer.com/article/10.1007/s00521-021-05802-4)
 
-The preprocessing step is responsible for transforming the dataset into landmark points.
+### Libras-UFOP
+- 56 signs, 5 signers, 8–16 repetitions per sign.
+- [Paper](https://www.sciencedirect.com/science/article/pii/S0957417420309143)
 
-The folder `01_landmark_extraction` contains the code for extracting the landmark points from videos into multiple CSV using OpenPose.
+### Preprocessed Datasets
 
-The folder `02_data_processing` contains the code for join the CSV files into a single file.
+For convenience, we provide preprocessed versions of the datasets with extracted landmarks:
 
-# Training
+- **MINDS-Libras:** [Download preprocessed data](https://drive.google.com/file/d/1qx2JudpjPgpp4-fpJ7YVMrszWV4lYPCd/view?usp=drive_link)
+  - Place at: `00_datasets/dataset_output/libras_minds/libras_minds_openpose.csv`
 
-The training step is responsible for training the model using the dataset and hyperparameters.
+- **Include-50:** [Download preprocessed data](https://drive.google.com/file/d/14SbYpFIbHi_Is1hD9XH9Sg_5eF--xtAw/view?usp=sharing)
+  - Place at: `00_datasets/dataset_output/include50/include50_openpose.csv`
 
-The folder `03_model_training` contains the code for training the model.
+- **KSL (Korean Sign Language):** [Download preprocessed data](https://drive.google.com/file/d/1-27qX-KtCE3RknzASvXuJ-aVZAQ60tNj/view?usp=sharing)
+  - Place at: `00_datasets/dataset_output/KSL/ksl_openpose.csv`
 
-Most of the hyperparameters are already parallelized, but some of them need to be adjusted according to the dataset.
+---
 
-You can see more details about in the `03_model_training/README.md` file.
+## Directory Structure
 
+- `01_landmarks_extraction/` – Extract landmark points from videos using OpenPose.
+- `02_data_processing/` – Join CSV files into a single dataset.
+- `03_model_training/` – Model training scripts and model definitions.
+- `04_result_analysis/` – Notebooks and scripts for analyzing results.
+- `00_data_exploration/` – Data exploration scripts and notebooks.
+- `99_model_output/` – Model outputs.
+- `99_old/` – Legacy scripts and notebooks.
+- `99_others/` – Miscellaneous scripts and data.
+- `99_skeleton_explore/` – Skeleton-based experiments.
 
-# Results
+---
 
-Our model was able to overcome the state-of-the-art on both MINDS-Libras and Libras-UFOP datasets.
+## Preprocessing
 
-On MINDS-Libras, the model had an accuracy of 0.93, we had an improvement of 2 percentage points on accuracy and 3 percentage points on F1-Score, comparing to the state-of-the-art.
+1. **Extract Landmarks:**
+   - Use scripts in `01_landmarks_extraction/` to extract landmark points from videos (e.g., with OpenPose).
+2. **Join CSVs:**
+   - Use scripts in `02_data_processing/` to merge CSVs into a single dataset file.
 
-For Libras-UFOP dataset, the difference is ever bigger. Our model shows an accuracy of 0.82, 8 percentage points above the state-of-the-art and 9 percentage points on F1-score.
+---
 
+## Training
 
-# Citation
+- Training scripts are in `03_model_training/`.
+- Most hyperparameters are parallelized, but some may need adjustment per dataset.
+- See `03_model_training/README.md` for details.
+
+**Example:**
+```bash
+python 03_model_training/model_training.py --config your_config.yaml
+```
+
+---
+
+## Results
+
+Our model achieves strong performance across multiple sign language datasets:
+
+### Brazilian Sign Language Datasets
+- **MINDS-Libras:**
+  - Accuracy: **0.93**
+  - +2 percentage points accuracy, +3 F1-Score over previous SOTA
+- **Libras-UFOP:**
+  - Accuracy: **0.82**
+  - +8 percentage points accuracy, +9 F1-Score over previous SOTA
+
+### Additional Datasets
+- **Include-50:**
+  - Accuracy: **0.97** (ResNet18 + Skeleton-DML)
+  - Excellent performance on this larger dataset
+- **KSL (Korean Sign Language):**
+  - Accuracy: **0.63** (ResNet18 + Skeleton-DML)
+  - Best performance with Skeleton-DML representation
+
+---
+
+## Citation
 
 If you use this code for your research, please cite our paper:
 
-Citation:
-```
-Alves, Carlos Eduardo GR, Francisco de Assis Boldt, and Thiago M. Paixão. "Enhancing Brazilian Sign Language Recognition through Skeleton Image Representation." arXiv preprint arXiv:2404.19148 (2024). 
-```
+> Alves, Carlos Eduardo GR, Francisco de Assis Boldt, and Thiago M. Paixão. "Enhancing Brazilian Sign Language Recognition through Skeleton Image Representation." arXiv preprint arXiv:2404.19148 (2024).
 
-Bibtex:
-```
+**BibTeX:**
+```bibtex
 @article{alves2024enhancing,
   title={Enhancing Brazilian Sign Language Recognition through Skeleton Image Representation},
   author={Alves, Carlos Eduardo GR and Boldt, Francisco de Assis and Paix{\~a}o, Thiago M},
@@ -92,4 +152,16 @@ Bibtex:
   year={2024}
 }
 ```
+
+---
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request if you have suggestions, bug fixes, or improvements.
+
+---
+
+## License
+
+This project is licensed under the terms of the MIT License. See the [LICENSE](LICENSE) file for details.
 
