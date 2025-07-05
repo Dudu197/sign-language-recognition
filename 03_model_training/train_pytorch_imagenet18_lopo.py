@@ -23,7 +23,7 @@ if dataset_name == "minds":
     # frames = ref_frames[ref]
     # print(f"Frames: {frames}")
     # df = pd.read_csv(f"../00_datasets/dataset_output/libras_minds/libras_minds_openpose_{frames}_frames_sample.csv")
-    df = pd.read_csv("../00_datasets/dataset_output/libras_minds/libras_minds_openpose.csv")
+    df = pd.read_csv("../00_datasets/dataset_output/libras_minds/libras_minds_openpose_augmented.csv")
 elif dataset_name == "ufop":
     df = pd.read_csv("../00_datasets/dataset_output/libras_ufop/libras_ufop_openpose.csv")
     # [52.0, 58.5, 71.5, 78.0]
@@ -55,4 +55,4 @@ if dataset_name == "ksl":
 
 epochs = 20
 
-model_training.train(df, epochs)
+model_training.train(df, epochs, meta={})

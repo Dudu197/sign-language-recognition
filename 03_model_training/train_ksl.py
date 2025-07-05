@@ -14,9 +14,11 @@ else:
     raise ValueError("Invalid dataset name")
 
 
-if dataset_name == "ksl":
-    if "person" not in df.columns:
-        df["person"] = df["video_name"].apply(lambda i: int(i.split("\\")[1].split("_")[0]))
+if "person" not in df.columns:
+    df["person"] = df["video_name"].apply(lambda i: int(i.split("\\")[1].split("_")[0]))
+
+categories = list(df["category"].unique())
+df["category"] = df["category"].apply(lambda i: categories.index(i))
 
 epochs = 50
 

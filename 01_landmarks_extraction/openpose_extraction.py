@@ -14,7 +14,7 @@ import re
 max_num_hands = 2
 
 # base_path = "Videos/Videos"
-base_path = "D:\\Projects\\datasets\\daniele"
+# base_path = "D:\\Projects\\datasets\\daniele"
 # categories = os.listdir(base_path)
 # categories = [str(i + 1).ljust(2, "0") for i in range(20)]
 
@@ -153,10 +153,10 @@ def process(videos_to_process):
     processed = 0
     videos_len = len(videos_to_process)
     total_start_time = time.time()
-    for video, category, signaler, index in videos_to_process:
+    for video_path, video_name, category, signaler, index in videos_to_process:
         processed += 1
         start_time = time.time()
-        frame_count = process_video(os.path.join(base_path, video), category, category, video, signaler)
+        frame_count = process_video(video_path, category, category, video_name, signaler)
         end_time = time.time()
         duration = end_time - start_time
         eta = duration * (videos_len - processed)
@@ -169,6 +169,6 @@ def process(videos_to_process):
     df = pd.DataFrame(videos_data)
     return df
 
-videos_to_process = [(os.path.join(base_path, i), i, 0, 0) for i in os.listdir(base_path)]
-df = process(videos_to_process)
-df.to_csv("../00_datasets/dataset_output/daniele/daniele_openpose.csv", index=False)
+# videos_to_process = [(os.path.join(base_path, i), i, 0, 0) for i in os.listdir(base_path)]
+# df = process(videos_to_process)
+# df.to_csv("../00_datasets/dataset_output/daniele/daniele_openpose.csv", index=False)

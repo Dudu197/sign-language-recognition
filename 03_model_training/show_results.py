@@ -36,7 +36,8 @@ def print_metrics(metric, average):
     metric_results = get_average_metrics(metric, average)
     average = sum(metric_results) / len(metric_results)
     std = np.std(metric_results)
-    print(f"{metric.__name__}:", average)
+    print(f"{metric.__name__}: {average} $\pm$ {std.round(2)}")
+    print(f"{metric.__name__}: {average.round(2)} $\pm$ {std.round(2)}")
 
 result = results[0]
 

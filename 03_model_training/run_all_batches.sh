@@ -20,8 +20,13 @@
 #./train_batch_minds.sh 0.0001 0.0001 17
 #./train_batch_ufop.sh 0.0001 0.0001 17
 
+#./train_batch_ksl.sh 0.0001 0.0001 18 Skeleton-Magnitude resnet18
+#./train_batch_include50.sh 0.0001 0.0001 18 Skeleton-Magnitude resnet18
+
 #./train_batch_minds.sh 0.0001 0.0001 19 SL-DML
 #./train_batch_ufop.sh 0.0001 0.0001 19 SL-DML
+#./train_batch_ksl.sh 0.0001 0.0001 19 SL-DML resnet18
+#./train_batch_include50.sh 0.0001 0.0001 19 SL-DML resnet18
 
 #./train_batch_minds.sh 0.00001 0.0001 20 Skeleton-DML vit_medium
 #./train_batch_ufop.sh 0.00001 0.0001 20 Skeleton-DML vit_medium
@@ -69,11 +74,16 @@
 #./train_batch_include50.sh 0.0001 0.0001 31 SL-DML mobilenet_v4_hybrid_medium
 
  # 39 ~ 43
-./train_batch_minds.sh 0.0001 0.0001 49 Skeleton-DML resnet18 # 120
-./train_batch_minds.sh 0.0001 0.0001 50 Skeleton-DML resnet18 # 120
-./train_batch_minds.sh 0.0001 0.0001 51 Skeleton-DML resnet18 # 120
-./train_batch_minds.sh 0.0001 0.0001 52 Skeleton-DML resnet18 # 120
-./train_batch_minds.sh 0.0001 0.0001 53 Skeleton-DML resnet18 # 120
+#./train_batch_minds.sh 0.0001 0.0001 49 Skeleton-DML resnet18 # 120
+#./train_batch_minds.sh 0.0001 0.0001 50 Skeleton-DML resnet18 # 120
+#./train_batch_minds.sh 0.0001 0.0001 51 Skeleton-DML resnet18 # 120
+#./train_batch_minds.sh 0.0001 0.0001 52 Skeleton-DML resnet18 # 120
+#./train_batch_minds.sh 0.0001 0.0001 53 Skeleton-DML resnet18 # 120
+
+
+#./train_batch_minds.sh 0.0001 0.0001 54 Skeleton-Magnitude resnet50 # 120
+#./train_batch_minds.sh 0.0001 0.0001 55 Skeleton-Magnitude mobilenet_v4_hybrid_medium # 120
+#./train_batch_minds.sh 0.0001 0.0001 56 Skeleton-DML resnet18
 
 
 #./train_batch_ufop.sh 0.0001 0.0001 44 Skeleton-DML resnet18 # 120
@@ -81,3 +91,28 @@
 #./train_batch_ufop.sh 0.0001 0.0001 46 Skeleton-DML resnet18 # 120
 #./train_batch_ufop.sh 0.0001 0.0001 47 Skeleton-DML resnet18 # 120
 #./train_batch_ufop.sh 0.0001 0.0001 48 Skeleton-DML resnet18 # 120
+
+
+
+
+#./train_batch_ksl.sh 0.00001 0.0001 59 Skeleton-Magnitude resnet18
+#./train_batch_include50.sh 0.00001 0.0001 59 Skeleton-Magnitude resnet18
+
+#./train_batch_ksl.sh 0.00001 0.0001 60 SL-DML resnet18
+#./train_batch_include50.sh 0.00001 0.0001 60 SL-DML resnet18
+
+
+#./train_batch_minds.sh 0.0001 0.0001 62 Skeleton-DML resnet18
+#./train_batch_ufop.sh 0.0001 0.0001 62 Skeleton-DML resnet18
+#./train_batch_ksl.sh 0.0001 0.0001 62 Skeleton-DML resnet18
+
+
+#./train_batch_include50.sh 0.0001 0.0001 15 Skeleton-DML resnet18
+#./train_batch_include50.sh 0.00001 0.0001 21 Skeleton-DML vit_medium
+#./train_batch_include50.sh 0.0001 0.0001 23 Skeleton-DML resnet50
+#./train_batch_include50.sh 0.0001 0.00001 24 Skeleton-DML mobilenet_v4_hybrid_medium
+#./train_batch_include50.sh 0.0001 0.00001 27 Skeleton-DML efficientnet_b6
+
+./train_batch_minds.sh 0.0001 0.0001 63 Skeleton-DML resnet18
+#./train_batch_ufop.sh 0.0001 0.0001 15 Skeleton-DML resnet18
+

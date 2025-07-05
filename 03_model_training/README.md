@@ -21,6 +21,14 @@ The available hyperparameters are:
 
 ## Running the code
 
+### Datasets
+
+The code was tested using the MINDS-Libras and Libras-UFOP datasets.
+
+The preprocessed MINDS-Libras dataset can be downloaded [here](https://drive.google.com/file/d/1qx2JudpjPgpp4-fpJ7YVMrszWV4lYPCd/view?usp=drive_link).
+
+The code expects the dataset to be in `00_datasets/dataset_output/libras_minds/libras_minds_openpose.csv`
+
 ### Batch
 
 Since we train using the LOPO strategy, we need to run the code multiple times, changing the people used for validation and testing.
